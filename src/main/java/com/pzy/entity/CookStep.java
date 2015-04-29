@@ -1,9 +1,13 @@
 package com.pzy.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,8 @@ public class CookStep {
 	private Long id;
 	private String name;
 	private String imgPath;
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE }, optional = true)
+    @JoinColumn(name = "cookboox_id")
 	private CookBook cookBook;
 	public Long getId() {
 		return id;
