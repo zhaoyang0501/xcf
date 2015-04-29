@@ -10,6 +10,12 @@ import com.pzy.entity.User;
 @ParentPackage("struts-default")  
 public class RegisterAction extends ActionSupport{
 	private User user;
+
+	@Action(value = "/registerUser", results = { @Result(name = "success", location = "/WEB-INF/views/registerok.jsp") })
+	public String registerUser() throws Exception {
+		return SUCCESS;
+	}
+
 	public User getUser() {
 		return user;
 	}

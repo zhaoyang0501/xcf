@@ -34,7 +34,7 @@
       <div class="row">        
        <div class="span12">
           <h1 class="heading1"><span class="maintext">注册一个新的账号</span></h1>
-          <form class="form-horizontal" action="doregister" method="post">
+          <form class="form-horizontal" action="registerUser" method="post">
             <div class="registerbox">
               <fieldset>
                 <div class="control-group">
