@@ -24,6 +24,14 @@ public class User implements Serializable {
 	private String address;
 	private Date birthday;
 	private String job;
+	private String sex;
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
 	public Long getId() {
 		return id;
