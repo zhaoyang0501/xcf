@@ -25,7 +25,7 @@ public class CookBook {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "cookBook")
 	private List<CookStep> cookSteps;
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "cookBook")
-	private List<CookFood> cookFood;
+	private List<CookFood> cookFoods;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	
@@ -100,12 +100,12 @@ public class CookBook {
 	public void setCookSteps(List<CookStep> cookSteps) {
 		this.cookSteps = cookSteps;
 	}
-	public List<CookFood> getCookFood() {
-		return cookFood;
+	public List<CookFood> getCookFoods() {
+		return cookFoods;
 	}
 
-	public void setCookFood(List<CookFood> cookFood) {
-		this.cookFood = cookFood;
+	public void setCookFoods(List<CookFood> cookFood) {
+		this.cookFoods = cookFood;
 	}
 	public Date getCreateDate() {
 		return createDate;

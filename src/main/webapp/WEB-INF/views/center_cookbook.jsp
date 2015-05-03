@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <title>SimpleOne - A Responsive Html5 Ecommerce Template</title>
@@ -78,91 +80,23 @@
 		        <section id="featured" >
 		          <h1 class="heading1"><span class="maintext">已上传菜谱</span></h1>
 		          <ul class="thumbnails">
-		            <li class="span3">
+		          <c:forEach items="${cookBooks }" var="bean">
+		          	<li class="span3">
 		              <div class="thumbnail">
-		              <a href="img/product1.jpg" class="fancyboxpopup"><img alt="" src="img/exmple/1.jpg"><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
+		              <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
+		              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
 		              <div class="caption">
-		                <a href="#" class="bloggridtitle">干锅手撕包菜
-		                </a>               
-		                <div class="author">上传 : <a href="#"> 张博士</a>
+		                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="bloggridtitle">${bean.name } </a>               
+		                <div class="author">上传 : <a href="#"> ${bean.user.nickname }</a>
 		                </div>
 		                <div>
-		                      
-		                      <span class="mr10"><i class="icon-calendar"></i> 2015-0101 </span>
+		                      <span class="mr10"><i class="icon-calendar"></i> ${bean.createDate } </span>
 		                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
 		                      </div>
-		                     
 		                    </div>
 		              </div>
 		            </li>
-		           <li class="span3">
-		              <div class="thumbnail">
-		              <a href="img/product1.jpg" class="fancyboxpopup"><img alt="" src="img/exmple/1.jpg"><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
-		              <div class="caption">
-		                <a href="#" class="bloggridtitle">干锅手撕包菜
-		                </a>               
-		                <div class="author">上传 : <a href="#"> 张博士</a>
-		                </div>
-		                <div>
-		                      
-		                      <span class="mr10"><i class="icon-calendar"></i> 2015-0101 </span>
-		                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
-		                      </div>
-		                     
-		                    </div>
-		              </div>
-		            </li>
-		            <li class="span3">
-		              <div class="thumbnail">
-		              <a href="img/product1.jpg" class="fancyboxpopup"><img alt="" src="img/exmple/1.jpg"><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
-		              <div class="caption">
-		                <a href="#" class="bloggridtitle">干锅手撕包菜
-		                </a>               
-		                <div class="author">上传 : <a href="#"> 张博士</a>
-		                </div>
-		                <div>
-		                      
-		                      <span class="mr10"><i class="icon-calendar"></i> 2015-0101 </span>
-		                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
-		                      </div>
-		                     
-		                    </div>
-		              </div>
-		            </li>
-		            <li class="span3">
-		              <div class="thumbnail">
-		              <a href="img/product1.jpg" class="fancyboxpopup"><img alt="" src="img/product1a.jpg"><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
-		              <div class="caption">
-		                <a href="#" class="bloggridtitle">干锅手撕包菜
-		                </a>               
-		                <div class="author">上传 : <a href="#"> 张博士</a>
-		                </div>
-		                <div>
-		                      
-		                      <span class="mr10"><i class="icon-calendar"></i> 2015-0101 </span>
-		                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
-		                      </div>
-		                     
-		                    </div>
-		              </div>
-		            </li>
-		            <li class="span3">
-		              <div class="thumbnail">
-		              <a href="img/product1.jpg" class="fancyboxpopup"><img alt="" src="img/exmple/1.jpg"><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
-		              <div class="caption">
-		                <a href="#" class="bloggridtitle">干锅手撕包菜
-		                </a>               
-		                <div class="author">上传 : <a href="#"> 张博士</a>
-		                </div>
-		                <div>
-		                      
-		                      <span class="mr10"><i class="icon-calendar"></i> 2015-0101 </span>
-		                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
-		                      </div>
-		                     
-		                    </div>
-		              </div>
-		            </li>
+		          </c:forEach>
 		          </ul>
 		        </section>
 		        </div>

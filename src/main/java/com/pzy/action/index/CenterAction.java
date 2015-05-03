@@ -31,7 +31,7 @@ public class CenterAction extends ActionSupport{
 	private CookBook cookBook;
 	private List<CookFood> cookFoods;
 	private List<CookStep> cookSteps;
-	
+	private List<CookBook> cookBooks;
 	private File cookImg;
 	private String cookImgContentType;  
     private String cookImgFileName; 
@@ -50,6 +50,8 @@ public class CenterAction extends ActionSupport{
 	}
 	@Action(value = "/centerCookBook", results = { @Result(name = "success", location = "/WEB-INF/views/center_cookbook.jsp") })
 	public String centerCookBook(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		cookBooks=cookBookService.findByUser(user);
 		return SUCCESS;
 	}
 	@Action(value = "/uploadCookBook", results = { @Result(name = "success", location = "/WEB-INF/views/upload_cookbook.jsp") })
@@ -73,7 +75,7 @@ public class CenterAction extends ActionSupport{
 				}
 			}
 		}
-		cookBook.setCookFood(cookFoodsToSave);
+		cookBook.setCookFoods(cookFoodsToSave);
 		
 		List<CookStep> cookStepsToSave= new ArrayList<CookStep>();
 		if(cookSteps!=null){
@@ -173,5 +175,11 @@ public class CenterAction extends ActionSupport{
 	}
 	public void setCookSteps(List<CookStep> cookSteps) {
 		this.cookSteps = cookSteps;
+	}
+	public List<CookBook> getCookBooks() {
+		return cookBooks;
+	}
+	public void setCookBooks(List<CookBook> cookBooks) {
+		this.cookBooks = cookBooks;
 	}
 }

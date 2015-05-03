@@ -7,5 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.User;
 public interface CookBookRepository extends PagingAndSortingRepository<CookBook, Long>,JpaSpecificationExecutor<CookBook>{
+	public List<CookBook> findByUser(User user);
 }
 
