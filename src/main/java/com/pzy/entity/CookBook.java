@@ -36,7 +36,26 @@ public class CookBook {
 	private CategorySub categorySub;
 	
 	private Date createDate;
+	
+	private Integer count;
+	
+	public Integer getCount() {
+		return count;
+	}
 
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
+	private Double score;
 	public Category getCategory() {
 		return category;
 	}

@@ -54,8 +54,8 @@
 				<nav class="subnav">
 					<ul class="nav-pills categorymenu">
 						<li><a href="category.html">概况</a>
-						<li><a class="active" href="./centerCookBook">菜谱</a>
-						<li><a href="./centerCollect">个人收藏</a>
+						<li><a  href="./centerCookBook">菜谱</a>
+						<li><a class="active" href="./centerCollect">个人收藏</a>
 						<li><a href="category.html">留言板</a>
 						<li><a href="category.html">个人信息设置</a>
 					</ul>
@@ -63,29 +63,21 @@
 			</div>
 		</div>
 		
-		
-		<div class="span12">
-		  <div class="row">
-		   <div class="span12 ">
-		     <a href="uploadCookBook" class="btn btn-orange pull-right" >
-		     创建菜谱
-		     </a>
-		   </div>
-		</div>
-		</div>
-		
 		<div class="span12">
 		  <div class="row">
 		   <div class="span12">
 		        <section id="featured" >
-		          <h1 class="heading1"><span class="maintext">已上传菜谱</span></h1>
+		          <h1 class="heading1"><span class="maintext">已收藏菜谱</span></h1>
 		          <ul class="thumbnails">
 		          <c:forEach items="${cookBooks }" var="bean">
-		          	<li class="span3">
-		              <div class="thumbnail">
-			              <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
+		          	<li class="span12">
+		          	<div class='row'>
+		          		<div class='span4'>
+		          		 <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
 			              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
-			              <div class="caption">
+		          		</div>
+		          		<div class='span8'>
+		          		<div class="caption">
 				                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="bloggridtitle">${bean.name } </a>               
 				                <div class="author">上传 : <a href="#"> ${bean.user.nickname }</a>
 				                </div>
@@ -93,8 +85,10 @@
 				                      <span class="mr10"><i class="icon-calendar"></i> ${bean.createDate } </span>
 				                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
 				                </div>
+				                 <button  id='bt_collect'  onclick="delete_collect(${cookBook.id })" class="btn btn-orange pull-left" >取消收藏</button>
 			              </div>
-		              </div>
+		          		</div>
+		          	</div>
 		            </li>
 		          </c:forEach>
 		          </ul>

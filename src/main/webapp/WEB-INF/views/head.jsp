@@ -24,8 +24,8 @@
             </div>
           </div>
           <div class="pull-right">
-            <form class="form-search top-search">
-              <input type="text" class="input-medium search-query" placeholder="Search Here…">
+            <form class="form-search top-search" action="find">
+              <input type="text" class="input-medium search-query" placeholder="搜索菜谱">
             </form>
           </div>
         </div>

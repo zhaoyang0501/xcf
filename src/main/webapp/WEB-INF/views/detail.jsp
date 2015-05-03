@@ -22,6 +22,23 @@
     <![endif]-->
 <!-- fav -->
 <link rel="shortcut icon" href="assets/ico/favicon.html">
+<script type="text/javascript">
+function save_collect(id){
+	$.ajax({
+		   type: "POST",
+		   url: "${pageContext.request.contextPath}/saveCollect",
+		   data: "cookBook.id="+id,
+		   success: function(msg){
+		     if(msg.tip=='ok'){
+		    	 alert("收藏成功！");
+		    	 $("#bt_collect").html("已收藏");
+		    	 $("#bt_collect").attr("disabled","disabled");
+		     }
+		   }
+		});
+}
+
+</script>
 </head>
 <body>
 <!-- Header Start -->
@@ -37,6 +54,7 @@
           <section id="latestblog">         
             <div class="blogdetail">
               <h2 class="heading2"><span>${cookBook.name }</span></h2>
+              
               <hr>
               <ul class="margin-none">
                 <li class="listblcok" style="border-bottom:none;">
@@ -44,8 +62,28 @@
                     <a class="fancyboxpopup thumbnail" href="${pageContext.request.contextPath}/upload/${cookBook.imgPath}"><img src="${pageContext.request.contextPath}/upload/${cookBook.imgPath}" alt=""></a>
                   </div>
                 </li>
+                <li class="listblcok" style="border-bottom:none;">
+                 <button  id='bt_collect'  onclick="save_collect(${cookBook.id })" class="btn btn-orange pull-left" >收藏菜谱</button>
+                </li>
+                
+                <li>
+                <div class="bshare-custom">
+				   <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more"></a>
+				
+				   <a title="分享到腾讯朋友" class="bshare-qqxiaoyou"></a>
+				   <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+				   <a title="分享到人人网" class="bshare-renren"></a>
+				   <a title="分享到开心网" class="bshare-kaixin001"></a>
+				   <a title="分享到豆瓣" class="bshare-douban"></a>
+				   <!-- 在这里添加更多平台 -->
+				
+				   <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+				</div>
+				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&style=-1"></script>
+				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC2P.js"></script>
+                </li>
               </ul>
-              <section class="leavecomment">
+			     
                 	<h2 class='heading2' >简介</h2>
                 	<hr>
                 	<p>
@@ -74,7 +112,6 @@
 								            </li>
 	                					</c:forEach>
           							</ul>
-								</section>
             </div>
           </section>
         </div>

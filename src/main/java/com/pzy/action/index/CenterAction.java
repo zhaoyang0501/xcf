@@ -54,6 +54,12 @@ public class CenterAction extends ActionSupport{
 		cookBooks=cookBookService.findByUser(user);
 		return SUCCESS;
 	}
+	@Action(value = "/centerCollect", results = { @Result(name = "success", location = "/WEB-INF/views/center_collect.jsp") })
+	public String centerCollect(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		cookBooks=cookBookService.findByUser(user);
+		return SUCCESS;
+	}
 	@Action(value = "/uploadCookBook", results = { @Result(name = "success", location = "/WEB-INF/views/upload_cookbook.jsp") })
 	public String uploadCookBook(){
 		return SUCCESS;

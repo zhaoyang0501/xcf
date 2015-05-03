@@ -16,49 +16,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.pzy.entity.Collect;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.CookFood;
 import com.pzy.entity.CookStep;
 import com.pzy.entity.User;
-import com.pzy.service.CollectService;
 import com.pzy.service.CookBookService;
 import com.pzy.service.UserService;
 
-@ParentPackage("json-default")
+@ParentPackage("struts-default")  
 @Namespace("/")
-public class DetailAction extends ActionSupport{
-	private CookBook cookBook;
-	private String tip;
+public class IndexAction extends ActionSupport{
+	private List<CookBook> cookBookNews;
+	private List<CookBook> cookBookHots;
 	@Autowired
 	CookBookService cookBookService;
-	@Autowired
-	CollectService collectService;
 	public String execute() throws Exception {
-		cookBook=cookBookService.find(cookBook.getId());
+		cookBookNews=cookBookService.findNew();
+		cookBookHots=cookBookService.findHot();
 		return SUCCESS;
 	}
-	@Action(value = "saveCollect", results = { @Result(name = "success", type = "json") }, params = {
-			"contentType", "text/html" })
-	public String saveCollect(){
-		Collect collect=new Collect();
-		collect.setCookBook(cookBookService.find(cookBook.getId()));
-		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		collect.setUser(user);
-		collectService.save(collect);
-		tip="ok";
-		return SUCCESS;
+	public List<CookBook> getCookBookNews() {
+		return cookBookNews;
 	}
-	public CookBook getCookBook() {
-		return cookBook;
+	public void setCookBookNews(List<CookBook> cookBookNews) {
+		this.cookBookNews = cookBookNews;
 	}
-	public void setCookBook(CookBook cookBook) {
-		this.cookBook = cookBook;
+	public List<CookBook> getCookBookHots() {
+		return cookBookHots;
 	}
-	public String getTip() {
-		return tip;
-	}
-	public void setTip(String tip) {
-		this.tip = tip;
+	public void setCookBookHots(List<CookBook> cookBookHots) {
+		this.cookBookHots = cookBookHots;
 	}
 }
