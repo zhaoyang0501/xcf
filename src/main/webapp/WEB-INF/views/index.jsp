@@ -45,7 +45,15 @@ left: 0px;
             <li> <a href="category.html">小吃</a> </li>
             <li> <a href="category.html">沙拉</a> </li>
             <li> <a href="category.html">零食</a> </li>
-            <li> <a href="category.html">寿司</a> </li>
+            <li> <a href="category.html">寿司</a> 
+            <ul>
+                  <li><a href="product.html">Mobile </a>
+                  </li>
+                  <li><a href="product.html">Laptop</a>
+                  </li>
+                 
+                </ul>
+            </li>
             <li> <a href="category.html">三明治</a> </li>
             <li> <a href="category.html">早餐</a> </li>
           </ul>
