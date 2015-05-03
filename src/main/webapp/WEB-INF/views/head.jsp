@@ -11,13 +11,13 @@
             <div class="navbar" id="topnav">
               <div class="navbar-inner">
                 <ul class="nav">
-                  <li><a class="home active" href="#">首页</a>
+                  <li><a class="home active" href="${pageContext.request.contextPath}/index">首页</a>
                   </li>
                   <li><a class="myaccount" href="#">菜谱分类</a>
                   </li>
                   <li><a class="shoppingcart" href="#">菜单</a>
                   </li>
-                  <li><a class="checkout" href="#">个人中心</a>
+                  <li><a class="checkout" href="${pageContext.request.contextPath}/center">个人中心</a>
                   </li>
                 </ul>
               </div>

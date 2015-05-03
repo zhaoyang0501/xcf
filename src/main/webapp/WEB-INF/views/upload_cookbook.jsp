@@ -31,55 +31,78 @@
     <div class="container">
       <div class="row">        
        <div class="span12">
-          <h1 class="heading1"><span class="maintext">注册一个新的账号</span></h1>
-          <form class="form-horizontal" action="registerUser" method="post">
+       <h2 class="heading2" style="text-align: center;">${tip }</h2>
+          <h1 class="heading1"><span class="maintext">创建一个菜谱</span></h1>
+          <form class="form-horizontal" enctype="multipart/form-data" method="post" action="${pageContext.request.contextPath}/douploadCookBook" >
             <div class="registerbox">
               <fieldset>
                 <div class="control-group">
-                  <label class="control-label"><span class="red">*</span> 用户名:</label>
+                  <label class="control-label"><span class="red">*</span> 菜谱名称:</label>
                   <div class="controls">
-                    <input type="text"  name='user.name' class="input-xlarge">
+                    <input type="text"  name='cookBook.name' class="input-xlarge">
                   </div>
                 </div>
                  <div class="control-group">
-                  <label class="control-label"><span class="red">*</span> 密码:</label>
+                  <label class="control-label"><span class="red">*</span> 菜谱封面:</label>
                   <div class="controls">
-                    <input type="text" name="user.password" class="input-xlarge">
+                    <input type="file" name="cookImg" class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label"><span class="red">*</span> 昵称:</label>
+                  <label class="control-label"><span class="red">*</span> 简介:</label>
                   <div class="controls">
-                    <input type="text" name="user.nickname" class="input-xlarge">
+                    <textarea rows="4" name='cookBook.remark' class='input-xlarge'></textarea>
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label"><span class="red">*</span> 电子邮件:</label>
+                  <label class="control-label"><span class="red">*</span> 用料:</label>
                   <div class="controls">
-                    <input type="text" name='user.email' class="input-xlarge">
+                   	<table class="table table-bordered" style="width: 60%">
+                   	<tr><td> <input type="text"  name="cookFoods[0].name" class="input-xlarge"></td><td> <input type="text"  name="cookFoods[0].number" class="input-xlarge"></td></tr>
+                   	<tr><td> <input type="text"  name="cookFoods[1].name" class="input-xlarge"></td><td> <input type="text"  name="cookFoods[1].number" class="input-xlarge"></td></tr>
+                   	<tr><td> <input type="text"  name="cookFoods[2].name" class="input-xlarge"></td><td> <input type="text"  name="cookFoods[2].number" class="input-xlarge"></td></tr>
+					</table>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            
+            <h3 class="heading3">步骤</h3>
+            <div class="registerbox">
+              <fieldset>
+                <div class="control-group">
+                  <label class="control-label"> 第一步:</label>
+                  <div class="controls">
+                    <textarea rows="4" name='cookSteps[0].name' class='input-xlarge'></textarea>
+                     <input type="file" name="stepImg" class="input-xlarge">
+                  </div>
+                </div>
+               <div class="control-group">
+                  <label class="control-label"> 第二步:</label>
+                  <div class="controls">
+                    <textarea rows="4" name='cookSteps[1].name' class='input-xlarge'></textarea>
+                     <input type="file" name="stepImg" class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label"><span class="red">*</span> 地址:</label>
+                  <label class="control-label"> 第三步:</label>
                   <div class="controls">
-                    <input type="text"  name="user.address" class="input-xlarge">
+                   <textarea rows="4" name='cookSteps[2].name' class='input-xlarge'></textarea>
+                     <input type="file" name="stepImg" class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label"> 职业:</label>
+                  <label class="control-label"> 第四步:</label>
                   <div class="controls">
-                    <input type="text" name="user.job" class="input-xlarge">
+                     <textarea rows="4" name='cookSteps[3].name' class='input-xlarge'></textarea>
+                     <input type="file" name="stepImg" class="input-xlarge">
                   </div>
                 </div>
-                
                 <div class="control-group">
-                  <label class="control-label"> 性别:</label>
+                  <label class="control-label"> 第五步:</label>
                   <div class="controls">
-                   	<select name='user.sex'>
-                   		<option value=""></option>
-                   		<option value="女">女</option>
-                   		<option value="男">男</option>
-                   	</select>
+                     <textarea rows="4" name='cookSteps[4].name' class='input-xlarge'></textarea>
+                     <input type="file" name="stepImg" class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
@@ -87,6 +110,7 @@
                   <div class="controls">
                     <input type="Submit" class="btn btn-orange" value="提交">
                   </div>
+                </div>
                 </div>
               </fieldset>
             </div>

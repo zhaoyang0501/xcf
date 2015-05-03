@@ -1,5 +1,6 @@
 package com.pzy.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,6 +24,8 @@ public class CookBook {
 	private String imgPath;
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "cookBook")
 	private List<CookStep> cookSteps;
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "cookBook")
+	private List<CookFood> cookFood;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	
@@ -31,6 +34,9 @@ public class CookBook {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private CategorySub categorySub;
+	
+	private Date createDate;
+
 	public Category getCategory() {
 		return category;
 	}
@@ -93,5 +99,19 @@ public class CookBook {
 
 	public void setCookSteps(List<CookStep> cookSteps) {
 		this.cookSteps = cookSteps;
+	}
+	public List<CookFood> getCookFood() {
+		return cookFood;
+	}
+
+	public void setCookFood(List<CookFood> cookFood) {
+		this.cookFood = cookFood;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 }
