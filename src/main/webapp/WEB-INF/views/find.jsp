@@ -62,29 +62,12 @@ left: 0px;
           <section id="category">
             <div class="row">
               <div class="span9">
-			  <!--图片轮播-->
-			  <div class="sidewidt">
-				  <h2 class="heading2"><span>唯有美食与爱不可辜负</span></h2>
-				  <div class="flexslider" id="testimonialsidebar">
-            <ul class="slides">
-              <c:forEach items="${cookBookHots}" var="bean">
-					 	  <li class="clone" style="width: 870px; float: left; display: block;">
-							<a> <img src="${pageContext.request.contextPath}/upload/${bean.imgPath}" style=" height:200px" height="100px" width="400px;" alt=""></a> 
-							<span class="pull-right orange">${bean.name}  上传：${bean.user.name }</span>
-						  </li>
-			</c:forEach>
-            </ul>
-          </div>
-
-				</div>
-
-               <!-- Sorting-->
 
                 <div class="row">
         <section id="featured" class="row mt40">
-          <h1 class="heading1"><span class="maintext">最受欢迎</span></h1>
+          <h1 class="heading1"><span class="maintext">${category.name }</span></h1>
           <ul class="thumbnails">
-           <c:forEach items="${cookBookHots}" var="bean">
+           <c:forEach items="${cookBooks}" var="bean">
 		          	<li class="span3">
 		              <div class="thumbnail">
 			              <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
@@ -103,49 +86,8 @@ left: 0px;
 		    </c:forEach>
         </section>
       </div>
-       
-              <div class="row">
-        <section id="featured" class="row mt40">
-          <h1 class="heading1"><span class="maintext">最新上传</span></h1>
-          <ul class="thumbnails">
-          <c:forEach items="${cookBookNews}" var="bean">
-		          	<li class="span3">
-		              <div class="thumbnail">
-			              <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
-			              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
-			              <div class="caption">
-				                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="bloggridtitle">${bean.name } </a>               
-				                <div class="author">上传 : <a href="#"> ${bean.user.nickname }</a>
-				                </div>
-				                <div>
-				                      <span class="mr10"><i class="icon-calendar"></i> ${bean.createDate } </span>
-				                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
-				                </div>
-			              </div>
-		              </div>
-		            </li>
-		    </c:forEach>
-          </ul>
-        </section>
-      </div>         
                   <!-- Category-->
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                                      
-                
-                
                 
               </div>
             </div>

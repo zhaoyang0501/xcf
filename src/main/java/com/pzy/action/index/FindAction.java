@@ -27,36 +27,36 @@ import com.pzy.service.UserService;
 
 @ParentPackage("struts-default")  
 @Namespace("/")
-public class IndexAction extends ActionSupport{
-	private List<CookBook> cookBookNews;
-	private List<CookBook> cookBookHots;
+public class FindAction extends ActionSupport{
+	private List<CookBook> cookBooks;
 	private List<Category> categorys;
+	private Category category;
 	@Autowired
 	CookBookService cookBookService;
 	@Autowired
 	CategoryService categoryService;
 	public String execute() throws Exception {
-		cookBookNews=cookBookService.findNew();
-		cookBookHots=cookBookService.findHot();
+		category=categoryService.findCategory(category.getId());
+		cookBooks=cookBookService.findByCategory(category);
 		categorys=categoryService.findCategorys();
 		return SUCCESS;
 	}
-	public List<CookBook> getCookBookNews() {
-		return cookBookNews;
+	public List<CookBook> getCookBooks() {
+		return cookBooks;
 	}
-	public void setCookBookNews(List<CookBook> cookBookNews) {
-		this.cookBookNews = cookBookNews;
-	}
-	public List<CookBook> getCookBookHots() {
-		return cookBookHots;
-	}
-	public void setCookBookHots(List<CookBook> cookBookHots) {
-		this.cookBookHots = cookBookHots;
+	public void setCookBooks(List<CookBook> cookBooks) {
+		this.cookBooks = cookBooks;
 	}
 	public List<Category> getCategorys() {
 		return categorys;
 	}
 	public void setCategorys(List<Category> categorys) {
 		this.categorys = categorys;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

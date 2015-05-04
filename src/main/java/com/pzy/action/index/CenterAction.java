@@ -19,8 +19,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.CookFood;
 import com.pzy.entity.CookStep;
+import com.pzy.entity.MsgBoard;
 import com.pzy.entity.User;
 import com.pzy.service.CookBookService;
+import com.pzy.service.MsgCategoryService;
 import com.pzy.service.UserService;
 
 @ParentPackage("struts-default")  
@@ -39,11 +41,15 @@ public class CenterAction extends ActionSupport{
     private File[] stepImg;
 	private String[] stepImgContentType;  
     private String[] stepImgFileName; 
-    
+    private MsgBoard msgBoard;
+    private List<MsgBoard> msgBoards;
 	@Autowired
 	UserService userService;
 	@Autowired
 	CookBookService cookBookService;
+	@Autowired
+	MsgCategoryService msgCategoryService;
+	
 	@Action(value = "/center", results = { @Result(name = "success", location = "/WEB-INF/views/center.jsp") })
 	public String center(){
 		return SUCCESS;
@@ -52,6 +58,27 @@ public class CenterAction extends ActionSupport{
 	public String centerCookBook(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		cookBooks=cookBookService.findByUser(user);
+		return SUCCESS;
+	}
+	@Action(value = "/centerMsgBoard", results = { @Result(name = "success", location = "/WEB-INF/views/center_msgboard.jsp") })
+	public String msgBoard(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		msgBoards=msgCategoryService.findByUser(user);
+		return SUCCESS;
+	}
+	@Action(value = "/saveMsgBoard", results = { @Result(name = "success", location = "/WEB-INF/views/center_msgboard.jsp") })
+	public String saveMsgBoard(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		msgBoard.setUser(user);
+		msgBoard.setCreateDate(new Date(System.currentTimeMillis()));
+		msgCategoryService.save(msgBoard);
+		msgBoards=msgCategoryService.findByUser(user);
+		return SUCCESS;
+	}
+	@Action(value = "/deleteMsgBoard", results = { @Result(name = "success", type="redirect" , location = "centerMsgBoard") })
+	public String deleteMsgBoard(){
+		msgCategoryService.delete(msgBoard);
+		msgBoards=msgCategoryService.findByUser(user);
 		return SUCCESS;
 	}
 	@Action(value = "/centerCollect", results = { @Result(name = "success", location = "/WEB-INF/views/center_collect.jsp") })
@@ -187,5 +214,17 @@ public class CenterAction extends ActionSupport{
 	}
 	public void setCookBooks(List<CookBook> cookBooks) {
 		this.cookBooks = cookBooks;
+	}
+	public MsgBoard getMsgBoard() {
+		return msgBoard;
+	}
+	public void setMsgBoard(MsgBoard msgBoard) {
+		this.msgBoard = msgBoard;
+	}
+	public List<MsgBoard> getMsgBoards() {
+		return msgBoards;
+	}
+	public void setMsgBoards(List<MsgBoard> msgBoards) {
+		this.msgBoards = msgBoards;
 	}
 }

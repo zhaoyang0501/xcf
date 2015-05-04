@@ -15,8 +15,6 @@
                   </li>
                   <li><a class="myaccount" href="#">菜谱分类</a>
                   </li>
-                  <li><a class="shoppingcart" href="#">菜单</a>
-                  </li>
                   <li><a class="checkout" href="${pageContext.request.contextPath}/center">个人中心</a>
                   </li>
                 </ul>
@@ -24,8 +22,8 @@
             </div>
           </div>
           <div class="pull-right">
-            <form class="form-search top-search" action="find">
-              <input type="text" class="input-medium search-query" placeholder="搜索菜谱">
+            <form class="form-search top-search" action="search" method="post">
+              <input type="text" name='key' class="input-medium search-query" placeholder="搜索菜谱">
             </form>
           </div>
         </div>

@@ -54,6 +54,9 @@ public class CategoryService {
 		public void delete(Long id){
 			categorySubRepository.delete(id);
 		}
+		public Category findCategory(Long id){
+			  return categoryRepository.findOne(id);
+		}
 		public CategorySub find(Long id){
 			  return categorySubRepository.findOne(id);
 		}
