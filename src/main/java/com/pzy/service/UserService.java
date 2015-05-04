@@ -45,7 +45,7 @@ public class UserService {
          };
          Page<User> result = (Page<User>) userRepository.findAll(spec, pageRequest);
          return result;
-}
+     }
 	public void delete(Long id){
 	    userRepository.delete(id);
 	}
