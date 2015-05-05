@@ -17,7 +17,7 @@
                 <ul class="nav">
                   <li><a class="home active" href="${pageContext.request.contextPath}/index">首页</a>
                   </li>
-                  <li><a class="myaccount" href="#">菜谱分类</a>
+                  <li><a class="myaccount" href="${pageContext.request.contextPath}/gocategory">菜谱分类</a>
                   </li>
                   <li><a class="checkout" href="${pageContext.request.contextPath}/center">个人中心</a>
                   </li>

@@ -39,7 +39,7 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>资源分类管理</h3>
+								<h3>分类管理</h3>
 							</div>
 							<div class="box well form-inline">
 								<span>名称：</span>

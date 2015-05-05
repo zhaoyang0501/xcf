@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.pzy.entity.Category;
+import com.pzy.entity.CategorySub;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.CookFood;
 import com.pzy.entity.CookStep;
@@ -31,6 +32,7 @@ public class IndexAction extends ActionSupport{
 	private List<CookBook> cookBookNews;
 	private List<CookBook> cookBookHots;
 	private List<Category> categorys;
+	private List<CategorySub> categorysubs;
 	@Autowired
 	CookBookService cookBookService;
 	@Autowired
@@ -38,6 +40,12 @@ public class IndexAction extends ActionSupport{
 	public String execute() throws Exception {
 		cookBookNews=cookBookService.findNew();
 		cookBookHots=cookBookService.findHot();
+		categorys=categoryService.findCategorys();
+		return SUCCESS;
+	}
+	@Action(value = "gocategory", results = { @Result(name = "success", location = "/WEB-INF/views/category.jsp") })
+	public String gocategory() throws Exception {
+		categorysubs=categoryService.findCategorySubs();
 		categorys=categoryService.findCategorys();
 		return SUCCESS;
 	}
@@ -58,5 +66,11 @@ public class IndexAction extends ActionSupport{
 	}
 	public void setCategorys(List<Category> categorys) {
 		this.categorys = categorys;
+	}
+	public List<CategorySub> getCategorysubs() {
+		return categorysubs;
+	}
+	public void setCategorysubs(List<CategorySub> categorysubs) {
+		this.categorysubs = categorysubs;
 	}
 }

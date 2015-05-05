@@ -17,16 +17,20 @@ import org.springframework.util.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.pzy.entity.Category;
+import com.pzy.entity.Collect;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.CookFood;
 import com.pzy.entity.CookStep;
 import com.pzy.entity.MsgBoard;
 import com.pzy.entity.User;
+import com.pzy.service.CategoryService;
+import com.pzy.service.CollectService;
 import com.pzy.service.CookBookService;
 import com.pzy.service.MsgCategoryService;
 import com.pzy.service.UserService;
 
-@ParentPackage("struts-default")  
+@ParentPackage("json-default")
 @Namespace("/")
 public class CenterAction extends ActionSupport{
 	private User user;
@@ -35,11 +39,13 @@ public class CenterAction extends ActionSupport{
 	private List<CookFood> cookFoods;
 	private List<CookStep> cookSteps;
 	private List<CookBook> cookBooks;
+	private List<Collect> collects;
+	private Collect collect;
 	private File cookImg;
 	private String cookImgContentType;  
     private String cookImgFileName; 
-	
-    private File[] stepImg;
+	private List<Category> categorys;
+	private File[] stepImg;
 	private String[] stepImgContentType;  
     private String[] stepImgFileName; 
     private MsgBoard msgBoard;
@@ -50,7 +56,10 @@ public class CenterAction extends ActionSupport{
 	CookBookService cookBookService;
 	@Autowired
 	MsgCategoryService msgCategoryService;
-	
+	@Autowired
+	CategoryService categoryService;
+	@Autowired
+	CollectService collectService;
 	@Action(value = "/center", results = { @Result(name = "success", location = "/WEB-INF/views/center.jsp") })
 	public String center(){
 		return SUCCESS;
@@ -85,7 +94,14 @@ public class CenterAction extends ActionSupport{
 	@Action(value = "/centerCollect", results = { @Result(name = "success", location = "/WEB-INF/views/center_collect.jsp") })
 	public String centerCollect(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		cookBooks=cookBookService.findByUser(user);
+		collects=this.collectService.findByUser(user);
+		return SUCCESS;
+	}
+	@Action(value = "deleteCollect", results = { @Result(name = "success", type = "json") }, params = {
+			"contentType", "text/html" })
+	public String deleteCollect(){
+		collectService.delete(collect);
+		tip="ok";
 		return SUCCESS;
 	}
 	@Action(value = "/centerInfo", results = { @Result(name = "success", location = "/WEB-INF/views/center_info.jsp") })
@@ -102,6 +118,7 @@ public class CenterAction extends ActionSupport{
 	
 	@Action(value = "/uploadCookBook", results = { @Result(name = "success", location = "/WEB-INF/views/upload_cookbook.jsp") })
 	public String uploadCookBook(){
+		this.categorys=this.categoryService.findCategorys();
 		return SUCCESS;
 	}
 	@Action(value = "/douploadCookBook", results = { @Result(name = "success", location = "/WEB-INF/views/upload_cookbook.jsp") })
@@ -152,6 +169,7 @@ public class CenterAction extends ActionSupport{
                 FileUtils.copyFile(stepImg[i], savefile);
             }
         }
+		this.categorys=this.categoryService.findCategorys();
 		tip="上传成功";
 		return SUCCESS;
 	}
@@ -239,5 +257,23 @@ public class CenterAction extends ActionSupport{
 	}
 	public void setMsgBoards(List<MsgBoard> msgBoards) {
 		this.msgBoards = msgBoards;
+	}
+	public List<Category> getCategorys() {
+		return categorys;
+	}
+	public void setCategorys(List<Category> categorys) {
+		this.categorys = categorys;
+	}
+	public List<Collect> getCollects() {
+		return collects;
+	}
+	public void setCollects(List<Collect> collects) {
+		this.collects = collects;
+	}
+	public Collect getCollect() {
+		return collect;
+	}
+	public void setCollect(Collect collect) {
+		this.collect = collect;
 	}
 }

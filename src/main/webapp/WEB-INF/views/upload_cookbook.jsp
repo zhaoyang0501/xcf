@@ -54,6 +54,32 @@
                     <textarea rows="4" name='cookBook.remark' class='input-xlarge'></textarea>
                   </div>
                 </div>
+                
+                <div class="control-group">
+                  <label class="control-label"><span class="red">*</span> 大类:</label>
+                  <div class="controls">
+                  				
+                    <select id='category' name='cookBook.category.id' onchange="changeCategory()">
+											<option value=""></option>
+											<c:forEach items="${categorys }" var="bean">
+												<option value="${bean.id }">${bean.name }</option>
+											</c:forEach>
+					</select>
+                  </div>
+                </div>
+                
+                <div class="control-group" id='control_project'>
+								<label for="categorySub" class="control-label">小类：</label>
+								<div class="controls">
+									<select id='categorySub' name='cookBook.categorySub.id' onchange="">
+											<option value=""></option>
+											<c:forEach items="${categorySubs }" var="bean">
+												<option value="${bean.id }">${bean.name }</option>
+											</c:forEach>
+									</select>
+								</div>
+							</div>
+                
                 <div class="control-group">
                   <label class="control-label"><span class="red">*</span> 用料:</label>
                   <div class="controls">
@@ -141,5 +167,22 @@
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" src="js/jquery.ba-throttle-debounce.min.js"></script>
 <script defer="" src="js/custom.js"></script>
+<script type="text/javascript">
+function changeCategory(){
+	$.ajax({
+		type : "get",
+		url : "${pageContext.request.contextPath}/admin/cookbook/querySubCategory?id="+$("#category").val(),
+		dataType : "json",
+		success : function(json) {
+			if(json.resultMap.state=='success'){
+				$("#categorySub").html("");
+				for (var i = 0; i < json.resultMap.object.length; i++) {
+					$("#categorySub").append("<option value='" +json.resultMap.object[i].id + "'>" + json.resultMap.object[i].name + "</option>");
+				}
+			}
+		}
+	});
+}
 
+</script>
 </body></html>

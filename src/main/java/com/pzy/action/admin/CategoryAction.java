@@ -65,7 +65,7 @@ public class CategoryAction extends ActionSupport {
 	@Action(value = "get", results = { @Result(name = "success", type = "json") }, params = {
 			"contentType", "text/html" })
 	public String get() {
-		resultMap.put("category", categoryService.find(id));
+		resultMap.put("categorySub", categoryService.find(id));
 		resultMap.put("state", "success");
 		resultMap.put("msg", "删除成功");
 		return SUCCESS;
@@ -77,6 +77,7 @@ public class CategoryAction extends ActionSupport {
 		CategorySub bean = categoryService.find(categorySub.getId());
 		bean.setName(categorySub.getName());
 		bean.setRemark(categorySub.getRemark());
+		bean.setCategory(categorySub.getCategory());
 		categoryService.save(bean);
 		resultMap.put("state", "success");
 		resultMap.put("msg", "修改成功");

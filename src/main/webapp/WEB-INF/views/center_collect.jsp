@@ -69,23 +69,23 @@
 		        <section id="featured" >
 		          <h1 class="heading1"><span class="maintext">已收藏菜谱</span></h1>
 		          <ul class="thumbnails">
-		          <c:forEach items="${cookBooks }" var="bean">
+		          <c:forEach items="${collects }" var="bean">
 		          	<li class="span12">
 		          	<div class='row'>
 		          		<div class='span4'>
-		          		 <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
+		          		 <a href="${pageContext.request.contextPath}/upload/${bean.cookBook.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.cookBook.imgPath}">
 			              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
 		          		</div>
 		          		<div class='span8'>
 		          		<div class="caption">
-				                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="bloggridtitle">${bean.name } </a>               
-				                <div class="author">上传 : <a href="#"> ${bean.user.nickname }</a>
+				                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.cookBook.id}" class="bloggridtitle">${bean.cookBook.name } </a>               
+				                <div class="author">上传 : <a href="#"> ${bean.cookBook.user.nickname }</a>
 				                </div>
 				                <div>
-				                      <span class="mr10"><i class="icon-calendar"></i> ${bean.createDate } </span>
-				                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分：6.0</a> </span><br>
+				                      <span class="mr10"><i class="icon-calendar"></i> ${bean.cookBook.createDate } </span>
+				                      <span class="mr10"><a href="#"><i class="icon-comment"></i> 评分： ${bean.cookBook.score } </a> </span><br>
 				                </div>
-				                 <button  id='bt_collect'  onclick="delete_collect(${cookBook.id })" class="btn btn-orange pull-left" >取消收藏</button>
+				                 <button  id='bt_collect'  onclick="delete_collect(${bean.id })" class="btn btn-orange pull-left" >取消收藏</button>
 			              </div>
 		          		</div>
 		          	</div>
@@ -122,5 +122,17 @@
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" src="js/jquery.ba-throttle-debounce.min.js"></script>
 <script defer="" src="js/custom.js"></script>
+<script type="text/javascript">
+function delete_collect(id){
+	$.ajax({
+		   type: "POST",
+		   url: "${pageContext.request.contextPath}/deleteCollect",
+		   data: "collect.id="+id,
+		   success: function(msg){
+			   window.location.reload();
+		   }
+		});
+}
 
+</script>
 </body></html>
