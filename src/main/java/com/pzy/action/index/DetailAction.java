@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -30,6 +32,9 @@ import com.pzy.service.UserService;
 public class DetailAction extends ActionSupport{
 	private CookBook cookBook;
 	private String tip;
+	private Double score;
+	private Map<String, Object> resultMap = new HashMap<String, Object>();
+
 	@Autowired
 	CookBookService cookBookService;
 	@Autowired
@@ -49,6 +54,18 @@ public class DetailAction extends ActionSupport{
 		tip="ok";
 		return SUCCESS;
 	}
+	@Action(value = "giveScore", results = { @Result(name = "success", type = "json") }, params = {
+			"contentType", "text/html" })
+	public String giveScore() {
+		cookBook=cookBookService.find(cookBook.getId());
+		cookBook.setScore(score);
+		cookBookService.save(cookBook);
+		resultMap.put("cookBook", cookBook);
+		resultMap.put("state", "success");
+		resultMap.put("msg", "删除成功");
+		return SUCCESS;
+	}
+	
 	public CookBook getCookBook() {
 		return cookBook;
 	}
@@ -60,5 +77,17 @@ public class DetailAction extends ActionSupport{
 	}
 	public void setTip(String tip) {
 		this.tip = tip;
+	}
+	public Map<String, Object> getResultMap() {
+		return resultMap;
+	}
+	public void setResultMap(Map<String, Object> resultMap) {
+		this.resultMap = resultMap;
+	}
+	public Double getScore() {
+		return score;
+	}
+	public void setScore(Double score) {
+		this.score = score;
 	}
 }

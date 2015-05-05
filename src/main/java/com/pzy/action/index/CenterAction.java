@@ -15,6 +15,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.CookFood;
@@ -87,6 +88,18 @@ public class CenterAction extends ActionSupport{
 		cookBooks=cookBookService.findByUser(user);
 		return SUCCESS;
 	}
+	@Action(value = "/centerInfo", results = { @Result(name = "success", location = "/WEB-INF/views/center_info.jsp") })
+	public String centerInfo(){
+		return SUCCESS;
+	}
+	@Action(value = "/resetUser", results = { @Result(name = "success", location = "/WEB-INF/views/center.jsp") })
+	public String resetUser(){
+		userService.save(user);
+		ActionContext.getContext().getSession().put("user",userService.find(user.getId()));
+		this.tip="用户信息修改成功！";
+		return SUCCESS;
+	}
+	
 	@Action(value = "/uploadCookBook", results = { @Result(name = "success", location = "/WEB-INF/views/upload_cookbook.jsp") })
 	public String uploadCookBook(){
 		return SUCCESS;

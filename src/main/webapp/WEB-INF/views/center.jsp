@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ include file="validateLogin.jsp"%>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <title>SimpleOne - A Responsive Html5 Ecommerce Template</title>
@@ -30,29 +31,14 @@
   <section id="product">
     <div class="container">
       <div class="row" style="margin-top: 40px"> 
-      
       <div class="span12">
+       <h2 class="heading2" style="text-align: center;">${tip }</h2>
   <!-- left avatar -->
   <div class='row'>
   <div class="span12">
     <h1 class="page-title mb10">
    		   ${user.nickname }的厨房
     </h1>
-
-    <!-- basic info -->
-    <div class="gray-font">
-      <div>
-          
-
-
-
-
-          <span class="display-inline-block">2015-04-28 加入</span>
-      </div>
-      <div>
-        
-      </div>
-    </div>
     <!-- basic info -->
     </div>
   </div>
@@ -64,11 +50,10 @@
            <div id="categorymenu">
       <nav class="subnav">
         <ul class="nav-pills categorymenu">
-           <li><a href="category.html">概况</a>
-		    <li><a href="${pageContext.request.contextPath}/centerCookBook">菜谱</a>  
-			 <li><a href="category.html">个人收藏</a>
-			  <li><a href="category.html">留言板</a>
-			   <li><a href="category.html">个人信息设置</a>  
+		    <li><a href="${pageContext.request.contextPath}/centerCookBook">菜谱</a> </li> 
+			 <li><a href="${pageContext.request.contextPath}/centerCollect">个人收藏</a></li> 
+			  <li><a href="${pageContext.request.contextPath}/centerMsgBoard">留言板</a></li> 
+			   <li><a href="${pageContext.request.contextPath}/centerInfo">个人信息设置</a>  </li> 
         </ul>
        </nav>
     </div>

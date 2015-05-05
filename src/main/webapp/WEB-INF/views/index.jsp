@@ -19,6 +19,9 @@
 .flex-control-nav{
 left: 0px;
 }
+#top_center a{
+color: #96979d  !important;
+}
 </style>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -63,21 +66,19 @@ left: 0px;
             <div class="row">
               <div class="span9">
 			  <!--图片轮播-->
-			  <div class="sidewidt">
-				  <h2 class="heading2"><span>唯有美食与爱不可辜负</span></h2>
-				  <div class="flexslider" id="testimonialsidebar">
-            <ul class="slides">
-              <c:forEach items="${cookBookHots}" var="bean">
-					 	  <li class="clone" style="width: 870px; float: left; display: block;">
-							<a> <img src="${pageContext.request.contextPath}/upload/${bean.imgPath}" style=" height:200px" height="100px" width="400px;" alt=""></a> 
-							<span class="pull-right orange">${bean.name}  上传：${bean.user.name }</span>
-						  </li>
-			</c:forEach>
-            </ul>
-          </div>
-
+				  <div class="sidewidt">
+					  <h2 class="heading2"><span>唯有美食与爱不可辜负</span></h2>
+					  <div class="flexslider" id="testimonialsidebar">
+			            <ul class="slides">
+			              <c:forEach items="${cookBookHots}" var="bean">
+								 	  <li class="clone" style="width: 870px; float: left; display: block;">
+										<a> <img src="${pageContext.request.contextPath}/upload/${bean.imgPath}" style=" height:200px" height="100px" width="400px;" alt=""></a> 
+										<span class="pull-right orange">${bean.name}  上传：${bean.user.name }</span>
+									  </li>
+						</c:forEach>
+			            </ul>
+	          		</div>
 				</div>
-
                <!-- Sorting-->
 
                 <div class="row">

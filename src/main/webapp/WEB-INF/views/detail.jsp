@@ -63,6 +63,9 @@ function save_collect(id){
                   </div>
                 </li>
                 <li class="listblcok" style="border-bottom:none;">
+                		请评分：<div style="display: inline;" ID='star'></div>${cookBook.score }分
+                </li>
+                <li class="listblcok" style="border-bottom:none;">
                  <button  id='bt_collect'  onclick="save_collect(${cookBook.id })" class="btn btn-orange pull-left" >收藏菜谱</button>
                 </li>
                 
@@ -139,5 +142,22 @@ function save_collect(id){
 <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" src="js/jquery.ba-throttle-debounce.min.js"></script>
 <script defer="" src="js/custom.js"></script>
-
+<script type="text/javascript" src="js/jquery.raty.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#star').raty({
+				start:${cookBook.score==null?0:cookBook.score},
+			  	onClick: function(score) {
+			  		$.ajax({
+			 		   type: "POST",
+			 		   url: "${pageContext.request.contextPath}/giveScore",
+			 		   data: "cookBook.id=${cookBook.id}&score="+score,
+			 		   success: function(msg){
+			 			  window.location.reload();
+			 		   }
+			 		});
+			  }
+			});
+	});
+</script>
 </body></html>

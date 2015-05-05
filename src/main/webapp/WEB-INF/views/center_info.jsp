@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ include file="validateLogin.jsp"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8">
 <title>SimpleOne - A Responsive Html5 Ecommerce Template</title>
@@ -29,56 +32,93 @@
 <div id="maincontainer">
   <section id="product">
     <div class="container">
-      <div class="row">        
-       <div class="span12">
-          <h1 class="heading1"><span class="maintext">注册一个新的账号</span></h1>
-          <form id='form' class="form-horizontal" action="registerUser" method="post">
+      <div class="row" style="margin-top: 40px"> 
+      	
+      	<div class="span12">
+		  <div class='row'>
+		  <div class="span12">
+		    <h1 class="page-title mb10">
+		   		   ${user.nickname }的厨房
+		    </h1>
+		    <div class="gray-font">
+		      <div>
+		          <span class="display-inline-block">2015-04-28 加入</span>
+		      </div>
+		    </div>
+		    </div>
+		  </div>
+		</div>
+
+
+		<div class="span12">
+			<div id="categorymenu">
+				<nav class="subnav">
+					<ul class="nav-pills categorymenu">
+						<li><a href="${pageContext.request.contextPath}/centerCookBook">菜谱</a> </li> 
+			 <li><a href="${pageContext.request.contextPath}/centerCollect">个人收藏</a></li> 
+			  <li><a  href="${pageContext.request.contextPath}/centerMsgBoard">留言板</a></li> 
+			   <li><a class='active'  href="${pageContext.request.contextPath}/centerInfo">个人信息设置</a>  </li> 
+					</ul>
+				</nav>
+			</div>
+		</div>
+		
+		<div class="span12">
+		  <form ID='form' class="form-horizontal" action="${pageContext.request.contextPath}/resetUser" method="post">
+		   <input type="hidden" value="${sessionScope.user.id}" name='user.id'>
             <div class="registerbox">
               <fieldset>
                 <div class="control-group">
                   <label class="control-label"><span class="red">*</span> 用户名:</label>
                   <div class="controls">
-                    <input type="text"  name='user.name' class="input-xlarge">
+                    <input type="text" name="user.name" value="${sessionScope.user.name}" class="input-xlarge">
                   </div>
                 </div>
                  <div class="control-group">
                   <label class="control-label"><span class="red">*</span> 密码:</label>
                   <div class="controls">
-                    <input type="password" name="user.password" class="input-xlarge">
+                    <input type="password" name="user.password"  value="${sessionScope.user.password}"  class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label"><span class="red">*</span> 昵称:</label>
                   <div class="controls">
-                    <input type="text" name="user.nickname" class="input-xlarge">
+                    <input type="text" name="user.nickname"   value="${sessionScope.user.nickname}" class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label"><span class="red">*</span> 电子邮件:</label>
                   <div class="controls">
-                    <input type="text" name='user.email' class="input-xlarge">
+                    <input type="text" name="user.email" value="${sessionScope.user.email}" class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label"><span class="red">*</span> 地址:</label>
                   <div class="controls">
-                    <input type="text"  name="user.address" class="input-xlarge">
+                    <input type="text" name="user.address"  value="${sessionScope.user.address}"  class="input-xlarge">
                   </div>
                 </div>
                 <div class="control-group">
                   <label class="control-label"> 职业:</label>
                   <div class="controls">
-                    <input type="text" name="user.job" class="input-xlarge">
+                    <input type="text" name="user.job" value="${sessionScope.user.job}" class="input-xlarge">
                   </div>
                 </div>
                 
                 <div class="control-group">
                   <label class="control-label"> 性别:</label>
                   <div class="controls">
-                   	<select name='user.sex'>
+                   	<select name="user.sex">
                    		<option value=""></option>
-                   		<option value="女">女</option>
-                   		<option value="男">男</option>
+                   		<c:if test="${sessionScope.user.sex=='男'}">
+					       	<option selected="selected" value="男">男</option>
+					       	  <option value="女">女</option>
+					       </c:if>
+					      <c:if test="${sessionScope.user.sex=='女'}">
+					       	 <option  value="男">男</option>
+					       	  <option selected="selected" value="女">女</option>
+					       </c:if>
+					    
                    	</select>
                   </div>
                 </div>
@@ -91,10 +131,10 @@
               </fieldset>
             </div>
           </form>
-          <div class="clearfix"></div>
-          <br>
-        </div>
-       </div>
+		
+		
+					
+	</div>
     </div>
   </section>
 </div>

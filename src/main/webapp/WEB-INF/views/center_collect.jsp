@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ include file="validateLogin.jsp"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html><html lang="en"><head>
@@ -53,11 +54,10 @@
 			<div id="categorymenu">
 				<nav class="subnav">
 					<ul class="nav-pills categorymenu">
-						<li><a href="category.html">概况</a>
-						<li><a  href="./centerCookBook">菜谱</a>
-						<li><a class="active" href="./centerCollect">个人收藏</a>
-						<li><a href="category.html">留言板</a>
-						<li><a href="category.html">个人信息设置</a>
+						<li><a href="${pageContext.request.contextPath}/centerCookBook">菜谱</a> </li> 
+			 <li><a class='active' href="${pageContext.request.contextPath}/centerCollect">个人收藏</a></li> 
+			  <li><a href="${pageContext.request.contextPath}/centerMsgBoard">留言板</a></li> 
+			   <li><a href="${pageContext.request.contextPath}/centerInfo">个人信息设置</a>  </li> 
 					</ul>
 				</nav>
 			</div>

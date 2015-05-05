@@ -28,7 +28,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	 @Action(value = "dologin", 
 	    		results = { @Result(name = "success" ,type="redirect", location = "index") ,
 	    					@Result(name = "login", location = "/WEB-INF/views/login.jsp") })  
-	    public String dologin() throws Exception { 
+	 public String dologin() throws Exception { 
 	    	User loginuser=userService.login(user.getName(), user.getPassword());
 	    	if(loginuser!=null){
 	    		session.put("user",loginuser );
@@ -40,7 +40,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	    		return LOGIN;
 	    	}
 	    	
-	    }
+	}
+	  @Action(value = "loginout", results = { @Result(type="redirect", location = "index") })  
+	public String loginout() throws Exception {  
+	    	ActionContext.getContext().getSession().clear();
+	    	return SUCCESS;
+	 }
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
 	}
