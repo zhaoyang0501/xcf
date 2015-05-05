@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ch">
 <head>
-<title>资源管理系统</title>
+<title></title>
 
 <%@ include file="common/meta.jsp"%>
 
@@ -13,7 +13,7 @@
 	<div class="container" style="margin-top:100px">
 		<div class="span12 login-header">
 		<h4 style="color:red; text-align: center;">${tip }</h4>
-		<h1 style="text-align: center;">欢迎登录资源管理系统后台</h1>
+		<h1 style="text-align: center;">欢迎登录懒人坊管理系统后台</h1>
 		</div>
 		<form  style=" margin-top:100px; border: 1px solid #115928;" class="form-signin-ribbon" action="${pageContext.request.contextPath}/admin/gologin" method="post">
 				<div class="content">
