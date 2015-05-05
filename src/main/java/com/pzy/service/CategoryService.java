@@ -33,9 +33,13 @@ public class CategoryService {
      public List<CategorySub> findCategorySubs() {
          return (List<CategorySub>) categorySubRepository.findAll();
      }
+     public List<CategorySub> findCategorySubs(Category category) {
+         return (List<CategorySub>) categorySubRepository.findByCategory(category);
+     }
      public List<Category> findCategorys() {
          return (List<Category>) categoryRepository.findAll();
      }
+     
      public Page<CategorySub> findAll(final int pageNumber, final int pageSize,final String name){
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
         

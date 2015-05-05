@@ -1,6 +1,7 @@
 package com.pzy.action.admin;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -12,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.pzy.entity.Category;
+import com.pzy.entity.CategorySub;
 import com.pzy.entity.CookBook;
 import com.pzy.entity.User;
+import com.pzy.service.CategoryService;
 import com.pzy.service.CookBookService;
 import com.pzy.service.UserService;
 
@@ -26,11 +30,17 @@ public class CookBookAction  extends ActionSupport{
      private String name;
      private Long id;
      private CookBook cookBook;
-	private Map<String,Object> resultMap= new HashMap<String,Object>();
+	 private List<Category> categorys;
+     private List<CategorySub> categorySubs;
+	 private Map<String,Object> resultMap= new HashMap<String,Object>();
      @Autowired
      private CookBookService cookBookService;
+     @Autowired
+     private CategoryService categoryService;
      @Action(value = "index", results = { @Result(name = "success", location = "/WEB-INF/views/admin/cookbook/index.jsp") }) 
      public String index(){
+    	  categorys=categoryService.findCategorys();
+    	  categorySubs=categoryService.findCategorySubs();
           return SUCCESS;
      }
      
@@ -62,6 +72,13 @@ public class CookBookAction  extends ActionSupport{
     @Action(value = "get", results = { @Result(name = "success", type = "json") }, params = { "contentType", "text/html" })  
     public String get(){
      resultMap.put("object", cookBookService.find(id));
+     resultMap.put("state", "success");
+     resultMap.put("msg", "删除成功");
+         return SUCCESS;
+    }
+    @Action(value = "querySubCategory", results = { @Result(name = "success", type = "json") }, params = { "contentType", "text/html" })  
+    public String querySubCategory(){
+     resultMap.put("object", categoryService.findCategorySubs(categoryService.findCategory(id)));
      resultMap.put("state", "success");
      resultMap.put("msg", "删除成功");
          return SUCCESS;
@@ -133,4 +150,20 @@ public class CookBookAction  extends ActionSupport{
  	public void setCookBook(CookBook cookBook) {
  		this.cookBook = cookBook;
  	}
+ 	  
+    public List<Category> getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorys(List<Category> categorys) {
+		this.categorys = categorys;
+	}
+
+	public List<CategorySub> getCategorySubs() {
+		return categorySubs;
+	}
+
+	public void setCategorySubs(List<CategorySub> categorySubs) {
+		this.categorySubs = categorySubs;
+	}
 }

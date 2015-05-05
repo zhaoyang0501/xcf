@@ -43,7 +43,7 @@
 							</div>
 							<div class="box well form-inline">
 								<span>名称：</span>
-								<input type="text" id="name" >
+								<input type="text" id="name_" >
 								<a onclick="$.adminCookBook.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
@@ -81,40 +81,68 @@
 	<div class="modal hide fade" id="resource_modal">
 		<div class="modal-header blue">
 			<button type="button" class="close" data-dismiss="modal">×</button>
-			<label id="resource_modal_header_label"></label>
+			<label id="modal_header_label"></label>
 		</div>
 		<div class="modal-body" style="min-height: 200px;">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="form-container grid-form form-background left-align form-horizontal">
 						<form action="" method="get" id=''>
-							<input type="hidden" id="resourceId" value="">
+							<input type="hidden" id="id" value="">
 							<div class="control-group">
-								<label for="name" class="control-label">资源名称：</label>
+								<label for="name" class="control-label">名称：</label>
 								<div class="controls">
-									<input type="text" id="resourceName" value="" placeholder="">
+									<input type="text" id="name" value="" placeholder="">
 								</div>
 							</div>
 							
 							<div class="control-group" id='control_project'>
-								<label for="resourceCategoryId" class="control-label">分类：</label>
+								<label for="category" class="control-label">分类：</label>
 								<div class="controls">
-									<select id='resourceCategoryId'>
+									<select id='category' onchange="$.adminCookBook.changeCategory()">
 											<option value=""></option>
-									<c:forEach items="${categorys }" var="bean">
-										<option value="${bean.id }">${bean.name }</option>
-									</c:forEach>
+											<c:forEach items="${categorys }" var="bean">
+												<option value="${bean.id }">${bean.name }</option>
+											</c:forEach>
 									</select>
 								</div>
 							</div>
 							
 							<div class="control-group" id='control_project'>
-								<label for="resourceRemark" class="control-label">描述：</label>
+								<label for="categorySub" class="control-label">小类：</label>
 								<div class="controls">
-									<textarea id="resourceRemark" placeholder="" rows="3">
+									<select id='categorySub' onchange="">
+											<option value=""></option>
+											<c:forEach items="${categorySubs }" var="bean">
+												<option value="${bean.id }">${bean.name }</option>
+											</c:forEach>
+									</select>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label for="count" class="control-label">点击：</label>
+								<div class="controls">
+									<input type="text" id="count" value="" placeholder="">
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label for="name" class="control-label">评分：</label>
+								<div class="controls">
+									<input type="text" id="score" value="" placeholder="">
+								</div>
+							</div>
+							
+							<div class="control-group" id='control_project'>
+								<label for="remark" class="control-label">简介：</label>
+								<div class="controls">
+									<textarea id="remark" placeholder="" rows="3">
 									</textarea>
 								</div>
 							</div>
+							
+							
 						</form>
 					</div>
 				</div>
@@ -122,7 +150,7 @@
 		</div>
 		
 		<div class="modal-footer center" id="div_footer">
-			<a class="btn btn-primary" onclick="$.adminResource.update()">保存</a>
+			<a class="btn btn-primary" onclick="$.adminCookBook.update()">保存</a>
 			<a href="#"   class="btn" data-dismiss="modal" id="closeViewModal">关闭</a>
 		</div>
 	</div>

@@ -28,7 +28,7 @@ public class CookBook {
 	private List<CookFood> cookFoods;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
-	
+	private Double score;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
 
@@ -55,7 +55,6 @@ public class CookBook {
 		this.score = score;
 	}
 
-	private Double score;
 	public Category getCategory() {
 		return category;
 	}

@@ -32,7 +32,7 @@ jQuery.adminCookBook = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var name = $("#name").val();
+						var name = $("#name_").val();
 						if (!!name) {
 							aoData.push({
 								"name" : "name",
@@ -84,8 +84,8 @@ jQuery.adminCookBook = {
 						{
 							'aTargets' : [9],
 							'fnRender' : function(oObj, sVal) {
-								return "<button class=\"btn2 btn-info\" onclick=\"$.adminResource.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>"+
-								 "  &nbsp;<button class=\"btn2 btn-info\" onclick=\"$.adminResource.deleteResource("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
+								return "<button class=\"btn2 btn-info\" onclick=\"$.adminCookBook.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>"+
+								 "  &nbsp;<button class=\"btn2 btn-info\" onclick=\"$.adminCookBook.delete("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {
@@ -126,10 +126,13 @@ jQuery.adminCookBook = {
 	    			type : "post",
 	    			url : $.ace.getContextPath() + "/admin/cookbook/update",
 	    			data:{
-	    				"resource.id":$("#resourceId").val(),
-	    				"resource.name":$("#resourceName").val(),
-	    				"resource.remark":$("#resourceRemark").val(),
-	    				"resource.category.id":$("#resourceCategoryId").val()
+	    				"cookBook.id":$("#id").val(),
+	    				"cookBook.name":$("#name").val(),
+	    				"cookBook.remark":$("#remark").val(),
+	    				"cookBook.category.id":$("#category").val(),
+	    				"cookBook.categorySub.id":$("#categorySub").val(),
+	    				"cookBook.count":$("#count").val(),
+	    				"cookBook.score":$("#score").val()
 	    			},
 	    			dataType : "json",
 	    			success : function(json) {
@@ -144,7 +147,7 @@ jQuery.adminCookBook = {
 	    		});
 		},
 		showEdit: function (id){
-			$("#resourceId").val(id);
+			$("#id").val(id);
 			$.ajax({
     			type : "get",
     			url : $.ace.getContextPath() + "/admin/cookbook/get?id="+id,
@@ -152,13 +155,32 @@ jQuery.adminCookBook = {
     			success : function(json) {
     				if(json.resultMap.state=='success'){
     					$("#resource_modal").modal('show');
-    					$("#resourceCategoryId").val(json.resultMap.resource.category.id);
-    					$("#resourceName").val(json.resultMap.resource.name);
-    					$("#resourceRemark").val(json.resultMap.resource.remark);
+    					$("#category").val(json.resultMap.object.category.id);
+    					$("#name").val(json.resultMap.object.name);
+    					$("#categorySub").val(json.resultMap.object.categorySub.id);
+    					$("#count").val(json.resultMap.object.count);
+    					$("#score").val(json.resultMap.object.score);
+    					$("#remark").val(json.resultMap.object.remark);
     				}else{
     					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
     				}
     			}
     		});
+		},
+		changeCategory:function(){
+			$.ajax({
+    			type : "get",
+    			url : $.ace.getContextPath() + "/admin/cookbook/querySubCategory?id="+$("#category").val(),
+    			dataType : "json",
+    			success : function(json) {
+    				if(json.resultMap.state=='success'){
+    					$("#categorySub").html("");
+    					for (var i = 0; i < json.resultMap.object.length; i++) {
+    						$("#categorySub").append("<option value='" +json.resultMap.object[i].id + "'>" + json.resultMap.object[i].name + "</option>");
+    					}
+    				}
+    			}
+    		});
+			
 		}
 };
