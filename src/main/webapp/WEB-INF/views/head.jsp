@@ -37,7 +37,7 @@
 	          <a href="${pageContext.request.contextPath}/register" style="color: #fff;" >注册</a>
 	          </c:if>
 	          <c:if test="${sessionScope.user!=null}">
-	           <a href="javascript:void(0)" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown">胡惊涛<b class="caret"></b></a>
+	           <a href="javascript:void(0)" style="color: #fff;" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.user.nickname }<b class="caret"></b></a>
 	               <ul class="dropdown-menu language" id='top_center'>
 	                <li>
 	                  <a href="${pageContext.request.contextPath}/center">个人中心</a>

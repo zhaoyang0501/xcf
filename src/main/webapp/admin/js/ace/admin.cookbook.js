@@ -85,7 +85,7 @@ jQuery.adminCookBook = {
 							'aTargets' : [9],
 							'fnRender' : function(oObj, sVal) {
 								return "<button class=\"btn2 btn-info\" onclick=\"$.adminCookBook.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>"+
-								 "  &nbsp;<button class=\"btn2 btn-info\" onclick=\"$.adminCookBook.delete("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
+								 "  &nbsp;<button class=\"btn2 btn-info\" onclick=\"$.adminCookBook.deleteit("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {
@@ -102,7 +102,7 @@ jQuery.adminCookBook = {
 			}
 
 		},
-		deleteResource :function(id){
+		deleteit :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){
 	            	$.ajax({

@@ -87,8 +87,8 @@ color: #96979d  !important;
           <ul class="thumbnails">
            <c:forEach items="${cookBookHots}" var="bean">
 		          	<li class="span3">
-		              <div class="thumbnail">
-			              <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
+		              <div class="">
+			              <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" ><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
 			              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
 			              <div class="caption">
 				                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="bloggridtitle">${bean.name } </a>               
@@ -111,8 +111,8 @@ color: #96979d  !important;
           <ul class="thumbnails">
           <c:forEach items="${cookBookNews}" var="bean">
 		          	<li class="span3">
-		              <div class="thumbnail">
-			              <a href="${pageContext.request.contextPath}/upload/${bean.imgPath}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
+		              <div class="">
+			              <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" ><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
 			              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>
 			              <div class="caption">
 				                <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="bloggridtitle">${bean.name } </a>               

@@ -17,14 +17,22 @@ import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Category;
 import com.pzy.entity.CookBook;
+import com.pzy.entity.CookFood;
+import com.pzy.entity.CookStep;
 import com.pzy.entity.User;
 import com.pzy.repository.CookBookRepository;
+import com.pzy.repository.CookFoodRepository;
+import com.pzy.repository.CookStepRepository;
 
 @Service
 public class CookBookService {
 	@Autowired
 	private CookBookRepository cookBookRepository;
-
+	
+	@Autowired
+	private CookStepRepository cookStepRepository;
+	@Autowired
+	private CookFoodRepository cookFoodRepository;
 	public Page<CookBook> findAll(final int pageNumber, final int pageSize,
 			final String name) {
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize,
@@ -60,6 +68,18 @@ public class CookBookService {
 	}
 
 	public void delete(Long id) {
+		CookBook cookBook=this.cookBookRepository.findOne(id);
+		if(cookBook!=null){
+			if(cookBook.getCookSteps()!=null)
+			for(CookStep bean:cookBook.getCookSteps()){
+				this.cookStepRepository.delete(bean);
+			}
+			if(cookBook.getCookFoods()!=null)
+				for(CookFood bean:cookBook.getCookFoods()){
+					this.cookFoodRepository.delete(bean);
+				}
+			
+		}
 		cookBookRepository.delete(id);
 	}
 
