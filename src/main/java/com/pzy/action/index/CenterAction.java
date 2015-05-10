@@ -73,7 +73,7 @@ public class CenterAction extends ActionSupport{
 	@Action(value = "/centerMsgBoard", results = { @Result(name = "success", location = "/WEB-INF/views/center_msgboard.jsp") })
 	public String msgBoard(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		msgBoards=msgCategoryService.findByUser(user);
+		msgBoards=msgCategoryService.findAll();
 		return SUCCESS;
 	}
 	@Action(value = "/saveMsgBoard", results = { @Result(name = "success", location = "/WEB-INF/views/center_msgboard.jsp") })
@@ -82,13 +82,13 @@ public class CenterAction extends ActionSupport{
 		msgBoard.setUser(user);
 		msgBoard.setCreateDate(new Date(System.currentTimeMillis()));
 		msgCategoryService.save(msgBoard);
-		msgBoards=msgCategoryService.findByUser(user);
+		msgBoards=msgCategoryService.findAll();
 		return SUCCESS;
 	}
 	@Action(value = "/deleteMsgBoard", results = { @Result(name = "success", type="redirect" , location = "centerMsgBoard") })
 	public String deleteMsgBoard(){
 		msgCategoryService.delete(msgBoard);
-		msgBoards=msgCategoryService.findByUser(user);
+		msgBoards=msgCategoryService.findAll();
 		return SUCCESS;
 	}
 	@Action(value = "/centerCollect", results = { @Result(name = "success", location = "/WEB-INF/views/center_collect.jsp") })

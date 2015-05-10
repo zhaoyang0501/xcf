@@ -85,13 +85,13 @@ public class CookBookService {
 
 	public List<CookBook> findHot() {
 		return cookBookRepository.findAll(
-				new PageRequest(0, 8, new Sort(Direction.DESC, "count")))
+				new PageRequest(0, 6, new Sort(Direction.DESC, "count")))
 				.getContent();
 	}
 
 	public List<CookBook> findNew() {
 		return cookBookRepository.findAll(
-				new PageRequest(0, 8, new Sort(Direction.DESC, "createDate")))
+				new PageRequest(0, 6, new Sort(Direction.DESC, "createDate")))
 				.getContent();
 	}
 	public List<CookBook> findByCategory( Category category) {

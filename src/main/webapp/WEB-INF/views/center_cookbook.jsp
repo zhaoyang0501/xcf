@@ -81,7 +81,7 @@
 		          <h1 class="heading1"><span class="maintext">已上传菜谱</span></h1>
 		          <ul class="thumbnails">
 		          <c:forEach items="${cookBooks }" var="bean">
-		          	<li class="span3">
+		          	<li class="span4">
 		              <div class="">
 			              <a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" class="fancyboxpopup"><img alt="" style="min-width: 270px;" src="${pageContext.request.contextPath}/upload/${bean.imgPath}">
 			              <span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span><span class="viewfancypopup">&nbsp;</span></a>

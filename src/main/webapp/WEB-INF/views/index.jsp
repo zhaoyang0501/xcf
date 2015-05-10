@@ -72,7 +72,7 @@ color: #96979d  !important;
 			            <ul class="slides">
 			              <c:forEach items="${cookBookHots}" var="bean">
 								 	  <li class="clone" style="width: 870px; float: left; display: block;">
-										<a> <img src="${pageContext.request.contextPath}/upload/${bean.imgPath}" style=" height:200px" height="100px" width="400px;" alt=""></a> 
+										<a href="${pageContext.request.contextPath}/detail?cookBook.id=${bean.id}" > <img src="${pageContext.request.contextPath}/upload/${bean.imgPath}" style=" height:200px" height="100px" width="400px;" alt=""></a> 
 										<span class="pull-right orange">${bean.name}  上传：${bean.user.name }</span>
 									  </li>
 						</c:forEach>

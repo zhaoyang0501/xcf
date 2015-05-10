@@ -24,4 +24,7 @@ public class MsgCategoryService {
 	public List<MsgBoard> findByUser(User user){
 		return msgBoardRepository.findByUser(user);
 	}
+	public List<MsgBoard> findAll( ){
+		return (List<MsgBoard>)msgBoardRepository.findAll();
+	}
 }
